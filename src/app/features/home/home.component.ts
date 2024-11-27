@@ -1,22 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipesComponent } from '../recipes/recipes.component';
 import { Recette } from '../../models/recettes';
-
+import { RecipesComponent } from '../recipes/recipes.component';
+import { CommonModule } from '@angular/common';
+import { Injectable } from '@angular/core';
+import { RecetteServices } from '../../services/recettes.services';
+@Injectable({
+  providedIn : "root"
+})
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RecipesComponent],
+  imports: [CommonModule, RecipesComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit  {
+export class HomeComponent implements OnInit   {
 
-  recetes = Recette[] = []
+  constructor(private RecetteServices : RecetteServices){}
+  recettes! : Recette[]
+
 
   ngOnInit(): void {
-    this.recetes = [
-      new Recette(1, "Pizza","une pizza 4 fromage", "Mahmoud", )
-    ]
+    this.recettes = this.RecetteServices.getRecette();
   }
-
 }
