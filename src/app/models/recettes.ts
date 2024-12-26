@@ -4,9 +4,9 @@ export class Recette {
         public title : string,
         public description : string,
         public author : string,
-        public date : Date,
+        public date : string,
         public likes : number,
         public image : string 
     ){}
-
+    
 }
